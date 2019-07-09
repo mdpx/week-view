@@ -1,0 +1,57 @@
+.week-view {
+    max-width: 100%;
+    overflow: hidden;
+    color: #737373;
+    font-size: 15px;
+}
+.week-view-header {
+    text-align: center;
+}
+.week-view-header > span {
+    display: inline-block;
+}
+.week-view-body > ul {
+    white-space: nowrap;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+.week-view-body li {
+    display: inline-block;
+    text-align: center;
+}
+.week-view-cell {
+    width: 40px;
+}
+.week-view-date {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+}
+.week-view-body li div {
+    margin: auto;
+}
+.week-view-selected {
+    background-color: #57b4e0;
+    border-radius: 50%;
+    color: #fff;
+}
+.week-view-header .fa {
+    font-size: 22px;
+    margin: 0 5px;
+}
+.weel-view-header svg {
+    display: block;
+}
+.week-view-display {
+    font-size: 20px;
+    line-height: 1;
+    vertical-align: super;
+    color: #57b4e0;
+    padding: 0 5px;
+}
+.week-view-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
