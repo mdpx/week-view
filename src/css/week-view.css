@@ -10,6 +10,9 @@
 .week-view-header > span {
     display: inline-block;
 }
+.week-view-header > span, .week-view-header svg {
+    vertical-align: middle;
+}
 .week-view-body > ul {
     white-space: nowrap;
     position: relative;
@@ -22,12 +25,12 @@
 }
 .week-view-cell {
     width: 40px;
+    cursor: pointer;
 }
 .week-view-date {
     width: 35px;
     height: 35px;
     line-height: 35px;
-    cursor: pointer;
 }
 .week-view-body li div {
     margin: auto;
@@ -47,11 +50,12 @@
 .week-view-display {
     font-size: 20px;
     line-height: 1;
-    vertical-align: super;
     color: #57b4e0;
     padding: 0 5px;
 }
 .week-view-disabled {
     opacity: 0.6;
+}
+.week-view-disabled .week-view-cell{
     cursor: not-allowed;
 }
