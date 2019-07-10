@@ -1,6 +1,6 @@
 {
   "name": "week-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/week-view.js",
   "scripts": {
     "test": "jest",

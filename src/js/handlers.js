@@ -55,9 +55,12 @@ export default {
         }
     },
     _touchend(e) {
+        let last = this.touchData.xArr[this.touchData.xArr.length - 1]
+        if (!last) {
+            return
+        }
         this.ul.removeEventListener('touchmove', this.handlers.touchmove)
         document.removeEventListener('mousemove', this.handlers.touchmove)
-        let last = this.touchData.xArr[this.touchData.xArr.length - 1]
         let delta = last[0] - this.touchData.startX
         let v = 0
         if (this.touchData.xArr.length > 1) {

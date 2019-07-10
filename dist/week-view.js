@@ -1,4 +1,4 @@
-/*! week-view v1.0.0 by Monkey-D-Pixel */
+/*! week-view v1.0.1 by Monkey-D-Pixel */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
@@ -120,6 +120,23 @@ var WIDTH_PER_THRESHOLD = exports.WIDTH_PER_THRESHOLD = 0.3;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.CELL = exports.CONTAINER = undefined;
+
+var _constants = __webpack_require__(0);
+
+var CONTAINER = exports.CONTAINER = "<div class=\"".concat(_constants.NAMESPACE, "\">\n        <div class=\"").concat(_constants.NAMESPACE, "-header\">\n            <span class=\"").concat(_constants.NAMESPACE, "-prev\">\n                <svg height=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-chevron-left\"><polyline points=\"15 18 9 12 15 6\"></polyline></svg>\n            </span>\n            <span class=\"").concat(_constants.NAMESPACE, "-display\"></span>\n            <span class=\"").concat(_constants.NAMESPACE, "-next\">\n                <svg height=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-chevron-right\"><polyline points=\"9 18 15 12 9 6\"></polyline></svg>\n            </span>\n        </div>\n        <div class=\"").concat(_constants.NAMESPACE, "-body\"><ul></ul></div>\n    </div>");
+var CELL = exports.CELL = "<div class=\"".concat(_constants.NAMESPACE, "-cell\">\n        <div class=\"").concat(_constants.NAMESPACE, "-day\">{0}</div>\n        <div class=\"").concat(_constants.NAMESPACE, "-date\">{1}</div>\n    </div>");
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.changeDate = changeDate;
 exports.fullDate = fullDate;
 exports.formatStr = formatStr;
@@ -166,23 +183,6 @@ function formatStr() {
 }
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CELL = exports.CONTAINER = undefined;
-
-var _constants = __webpack_require__(0);
-
-var CONTAINER = exports.CONTAINER = "<div class=\"".concat(_constants.NAMESPACE, "\">\n        <div class=\"").concat(_constants.NAMESPACE, "-header\">\n            <span class=\"").concat(_constants.NAMESPACE, "-prev\">\n                <svg height=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-chevron-left\"><polyline points=\"15 18 9 12 15 6\"></polyline></svg>\n            </span>\n            <span class=\"").concat(_constants.NAMESPACE, "-display\"></span>\n            <span class=\"").concat(_constants.NAMESPACE, "-next\">\n                <svg height=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-chevron-right\"><polyline points=\"9 18 15 12 9 6\"></polyline></svg>\n            </span>\n        </div>\n        <div class=\"").concat(_constants.NAMESPACE, "-body\"><ul></ul></div>\n    </div>");
-var CELL = exports.CELL = "<div class=\"".concat(_constants.NAMESPACE, "-cell\">\n        <div class=\"").concat(_constants.NAMESPACE, "-day\">{0}</div>\n        <div class=\"").concat(_constants.NAMESPACE, "-date\">{1}</div>\n    </div>");
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -222,7 +222,7 @@ var _defaults2 = _interopRequireDefault(_defaults);
 
 var _constants = __webpack_require__(0);
 
-var _templates = __webpack_require__(2);
+var _templates = __webpack_require__(1);
 
 var _methods = __webpack_require__(6);
 
@@ -367,9 +367,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _constants = __webpack_require__(0);
 
-var _templates = __webpack_require__(2);
+var _templates = __webpack_require__(1);
 
-var _utilities = __webpack_require__(1);
+var _utilities = __webpack_require__(2);
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -626,7 +626,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _constants = __webpack_require__(0);
 
-var _utilities = __webpack_require__(1);
+var _utilities = __webpack_require__(2);
 
 exports["default"] = {
   _touchstart: function _touchstart(e) {
@@ -679,9 +679,14 @@ exports["default"] = {
     }
   },
   _touchend: function _touchend(e) {
+    var last = this.touchData.xArr[this.touchData.xArr.length - 1];
+
+    if (!last) {
+      return;
+    }
+
     this.ul.removeEventListener('touchmove', this.handlers.touchmove);
     document.removeEventListener('mousemove', this.handlers.touchmove);
-    var last = this.touchData.xArr[this.touchData.xArr.length - 1];
     var delta = last[0] - this.touchData.startX;
     var v = 0;
 
@@ -744,8 +749,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _constants = __webpack_require__(0);
-
-var _utilities = __webpack_require__(1);
 
 exports["default"] = {
   _bind: function _bind() {
@@ -813,7 +816,7 @@ if(false) {}
 
 exports = module.exports = __webpack_require__(11)(false);
 // Module
-exports.push([module.i, ".week-view {\n    max-width: 100%;\n    overflow: hidden;\n    color: #737373;\n    font-size: 15px;\n}\n.week-view-header {\n    text-align: center;\n}\n.week-view-header > span {\n    display: inline-block;\n}\n.week-view-body > ul {\n    white-space: nowrap;\n    position: relative;\n    margin: 0;\n    padding: 0;\n}\n.week-view-body li {\n    display: inline-block;\n    text-align: center;\n}\n.week-view-cell {\n    width: 40px;\n}\n.week-view-date {\n    width: 35px;\n    height: 35px;\n    line-height: 35px;\n    cursor: pointer;\n}\n.week-view-body li div {\n    margin: auto;\n}\n.week-view-selected {\n    background-color: #57b4e0;\n    border-radius: 50%;\n    color: #fff;\n}\n.week-view-header .fa {\n    font-size: 22px;\n    margin: 0 5px;\n}\n.weel-view-header svg {\n    display: block;\n}\n.week-view-display {\n    font-size: 20px;\n    line-height: 1;\n    vertical-align: super;\n    color: #57b4e0;\n    padding: 0 5px;\n}\n.week-view-disabled {\n    opacity: 0.6;\n    cursor: not-allowed;\n}", ""]);
+exports.push([module.i, ".week-view {\n    max-width: 100%;\n    overflow: hidden;\n    color: #737373;\n    font-size: 15px;\n}\n.week-view-header {\n    text-align: center;\n}\n.week-view-header > span {\n    display: inline-block;\n}\n.week-view-header > span, .week-view-header svg {\n    vertical-align: middle;\n}\n.week-view-body > ul {\n    white-space: nowrap;\n    position: relative;\n    margin: 0;\n    padding: 0;\n}\n.week-view-body li {\n    display: inline-block;\n    text-align: center;\n}\n.week-view-cell {\n    width: 40px;\n    cursor: pointer;\n}\n.week-view-date {\n    width: 35px;\n    height: 35px;\n    line-height: 35px;\n}\n.week-view-body li div {\n    margin: auto;\n}\n.week-view-selected {\n    background-color: #57b4e0;\n    border-radius: 50%;\n    color: #fff;\n}\n.week-view-header .fa {\n    font-size: 22px;\n    margin: 0 5px;\n}\n.weel-view-header svg {\n    display: block;\n}\n.week-view-display {\n    font-size: 20px;\n    line-height: 1;\n    color: #57b4e0;\n    padding: 0 5px;\n}\n.week-view-disabled {\n    opacity: 0.6;\n}\n.week-view-disabled .week-view-cell{\n    cursor: not-allowed;\n}", ""]);
 
 
 /***/ }),

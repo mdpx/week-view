@@ -2,10 +2,6 @@ import {
     NAMESPACE
 } from './constants'
 
-import {
-    changeDate
-} from './utilities'
-
 export default {
     _bind() {
         for (let key in this.handlers) {

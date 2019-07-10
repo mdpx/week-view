@@ -4,6 +4,8 @@
 
 ## Getting Started
 
+[Demo](https://codepen.io/monkey-d-pixel/pen/NZeQON)
+
 ### Installing
 
 npm
